@@ -77,3 +77,6 @@ form {
       width: 100%;
     }
   }
+  .link ,.active{
+    color: #04AA6D;
+  }
