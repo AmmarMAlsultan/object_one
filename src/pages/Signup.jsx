@@ -1,7 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
-import "../theem/css/Login.css";
 import axios from 'axios';
+// import Header from '../layout/Header';
+
+// import "../theem/css/style.css";
 
 const Signup = () => {
     const [name, setname] = useState("");
@@ -21,19 +23,25 @@ const Signup = () => {
         }
         try {
             if (flag) {
-                let getdata = await axios.post('http://127.0.0.1:8000/api/register', {
+                let respons = await axios.post('http://127.0.0.1:8000/api/register', {
                     name: name,
                     email: email,
                     password: password,
                     passwordR: passwordR,
-                }).then((respons) => setmsg(respons.status));
+                });
+                if (respons.status === 200) {
+                    window.localStorage.setItem("email", email);
+                    window.location.pathname = "/home";
+                }
             }
         } catch (error) {
+            // console.log(error);
             setmsg(error.response.status);
         }
-
     }
     return (
+        <>
+         {/* <Header/> */}
         <div className='indexlogin'>
             <form onSubmit={submit} action="" method="">
                 <div className="imgcontainer">
@@ -41,7 +49,6 @@ const Signup = () => {
                 </div>
                 <div className="container">
 
-                    {accept && msg === 200 && <p style={{ color: "green", marginTop: "2px", fontSize: "small", fontWeight: "bold", textAlign:'center',display:'flex',justifyContent:'center'}}>تم إنشاء مستخدم بنجاح</p>}
                     <label htmlFor="uname"><b>Username</b></label>
                     <input type="text" placeholder="Enter Username" id='name' name="uname" onChange={(e) => setname(e.target.value)} />
                     {name === "" && accept && <p style={{ color: "red", marginTop: "2px", fontSize: "small", fontWeight: "bold" }}>يرجى ادخال الاسم</p>}
@@ -64,6 +71,7 @@ const Signup = () => {
             </form>
 
         </div>
+        </>
     );
 }
 

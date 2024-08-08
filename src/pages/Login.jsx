@@ -1,7 +1,7 @@
 import React from 'react';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
+// import Header from '../layout/Header';
 
-import "../theem/css/Login.css";
 import axios from 'axios';
 const Login = () => {
     const [email, setemail] = useState("");
@@ -22,36 +22,46 @@ const Login = () => {
                 let getdata = await axios.post('http://127.0.0.1:8000/api/login', {
                     email: email,
                     password: password,
-                }).then((respons) => setmsg(respons.status));
+                });
+                if (getdata.status === 200) {
+                    window.localStorage.setItem("email", email);
+                    console.log("Ammar");
+                    window.location.pathname = "/home";
+                }
             }
+
         } catch (error) {
             setmsg(error.response.status);
         }
 
     }
     return (
-        <div className='indexlogin'>
-            <form onSubmit={submit} action="" method="">
-                <div className="imgcontainer">
-                    <img src="img_avatar2.png" alt="SignUp" className="avatar" />
-                </div>
-                <div className="container">
+        <>
+            {/* <Header /> */}
+            <div className='indexlogin'>
 
-                    <label htmlFor="em">Email</label>
-                    <input type="email" name="" id="email" required placeholder='Enter Email' onChange={(e) => setemail(e.target.value)} />
-                    {accept && msg === 422 && <p style={{ color: "red", marginTop: "2px", fontSize: "small", fontWeight: "bold" }}>الأيميل ليس موجود</p>}
+                <form onSubmit={submit} action="" method="">
+                    <div className="imgcontainer">
+                        <img src="img_avatar2.png" alt="SignUp" className="avatar" />
+                    </div>
+                    <div className="container">
 
-                    <label htmlFor="password"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" id='password' onChange={(e) => setpassoward(e.target.value)} />
-                    {msg===400 && accept && <p style={{ color: "red", marginTop: "2px", fontSize: "small", fontWeight: "bold" }}>كلمة المرور ليست موجودة</p>}
+                        <label htmlFor="em">Email</label>
+                        <input type="email" name="" id="email" required placeholder='Enter Email' onChange={(e) => setemail(e.target.value)} />
+                        {accept && msg === 401 && <p style={{ color: "red", marginTop: "2px", fontSize: "small", fontWeight: "bold" }}>الأيميل ليس موجود</p>}
 
-                    
-                    <button type="submit">Login</button>
+                        <label htmlFor="password"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" id='password' onChange={(e) => setpassoward(e.target.value)} />
+                        {msg === 400 && accept && <p style={{ color: "red", marginTop: "2px", fontSize: "small", fontWeight: "bold" }}>كلمة المرور ليست موجودة</p>}
 
-                </div>
-            </form>
 
-        </div>
+                        <button type="submit">Login</button>
+
+                    </div>
+                </form>
+
+            </div>
+        </>
     );
 }
 
