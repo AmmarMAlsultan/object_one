@@ -1,9 +1,15 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-// import Header from '../layout/Header';
 
+// import Header from '../layout/Header';
 import axios from 'axios';
+
 const Login = () => {
+
+    useEffect(() => {
+        document.title = "Login";
+    }, []);
+
     const [email, setemail] = useState("");
     const [password, setpassoward] = useState("");
     const [accept, setaccept] = useState(false);
@@ -41,8 +47,11 @@ const Login = () => {
             <div className='indexlogin'>
 
                 <form onSubmit={submit} action="" method="">
-                    <div className="imgcontainer">
-                        <img src="img_avatar2.png" alt="SignUp" className="avatar" />
+                    <div className="imgcontainer" style={{ display: "flex", textAlign: "center", justifyContent: "center", alignItems: "center" }}>
+                        <div>
+                            <i style={{ fontSize: "xx-large" }} class="fa-regular fa-user"></i>
+                            <p style={{margin:"0", fontStyle:"initial", color:"green"}}>login</p>
+                        </div>
                     </div>
                     <div className="container">
 

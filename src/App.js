@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Header from "./layout/Header";
 import Home from "./pages/Home";
 import "./theem/css/style.css";
+import "./all.min.css";
 
 function App() {
   return (
