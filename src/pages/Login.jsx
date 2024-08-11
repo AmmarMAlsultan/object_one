@@ -32,7 +32,7 @@ const Login = () => {
                 if (getdata.status === 200) {
                     window.localStorage.setItem("email", email);
                     console.log("Ammar");
-                    window.location.pathname = "/home";
+                    window.location.pathname = "/dashboad";
                 }
             }
 
@@ -49,7 +49,7 @@ const Login = () => {
                 <form onSubmit={submit} action="" method="">
                     <div className="imgcontainer" style={{ display: "flex", textAlign: "center", justifyContent: "center", alignItems: "center" }}>
                         <div>
-                            <i style={{ fontSize: "xx-large" }} class="fa-regular fa-user"></i>
+                            <i style={{ fontSize: "xx-large" }} className="fa-regular fa-user"></i>
                             <p style={{margin:"0", fontStyle:"initial", color:"green"}}>login</p>
                         </div>
                     </div>

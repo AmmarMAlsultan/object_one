@@ -1,8 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-// import Header from '../layout/Header';
-// import "../theem/css/style.css";
 
 const Signup = () => {
 
@@ -27,6 +25,7 @@ const Signup = () => {
         }
         try {
             if (flag) {
+                
                 let respons = await axios.post('http://127.0.0.1:8000/api/register', {
                     name: name,
                     email: email,
@@ -35,12 +34,16 @@ const Signup = () => {
                 });
                 if (respons.status === 200) {
                     window.localStorage.setItem("email", email);
-                    window.location.pathname = "/home";
+                    window.location.pathname = "/dashboad";
                 }
             }
-        } catch (error) {
-            // console.log(error);
-            setmsg(error.response.status);
+        }  catch (error) {
+            if (error.response) {
+                console.log('Error Data:', error.response.data);
+                console.log('Error Status:', error.response.status);
+            } else {
+                console.log('Error Message:', error.message);
+            }
         }
     }
     return (
@@ -50,7 +53,7 @@ const Signup = () => {
                 <form onSubmit={submit} action="" method="">
                     <div className="imgcontainer" style={{ display: "flex", textAlign: "center", justifyContent: "center", alignItems: "center" }}>
                         <div>
-                            <i style={{ fontSize: "xx-large" }} class="fa-regular fa-user"></i>
+                            <i style={{ fontSize: "xx-large" }} className="fa-regular fa-user"></i>
                             <p style={{ margin: "0", fontStyle: "initial", color: "green" }}>Sign Up</p>
                         </div>
                     </div>
@@ -78,6 +81,7 @@ const Signup = () => {
                 </form>
 
             </div>
+            
         </>
     );
 }

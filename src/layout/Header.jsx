@@ -11,7 +11,7 @@ const Header = () => {
             {
                 window.localStorage.getItem("email") ?
                     <>
-                        <NavLink to="home">Home</NavLink>
+                        <NavLink to="dashboad">Dashboad</NavLink>
                         <NavLink to="news">News</NavLink>
                         <NavLink to="contact">Contact</NavLink>
                         <NavLink to="about">About</NavLink>
