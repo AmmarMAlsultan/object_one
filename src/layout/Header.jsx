@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import "../theem/css/style.css";
 const Header = () => {
     function removelocalsorage() {
@@ -11,11 +11,8 @@ const Header = () => {
             {
                 window.localStorage.getItem("email") ?
                     <>
-                        <NavLink to="dashboad">Dashboad</NavLink>
-                        <NavLink to="news">News</NavLink>
-                        <NavLink to="contact">Contact</NavLink>
-                        <NavLink to="about">About</NavLink>
-                        <NavLink to="form">Form</NavLink>
+                        <Link to="dashboad">Dashboad</Link>
+                        <NavLink to="dashboad/users">Show Users</NavLink>
                         <button style={{ float: 'right', width: "100px", margin: "0", backgroundColor: "#3d7484" }} onClick={removelocalsorage}>Logout</button>
                     </>
                     :
